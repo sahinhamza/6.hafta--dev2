@@ -87,25 +87,6 @@ for (let i = 0; i < close.length; i++) {
     let div = this.parentElement;
     div.style.display = "none";
 
-    // localStorage
-    let str = close[i].parentElement.innerText;
-    let stri = str.replace(`×`,"");
-    removeItemAll(myDutylist,stri)
-    console.log(myDutylist)
-    localStorage.setItem('myDuty', JSON.stringify(myDutylist));
-
   }
 }
 
-// arrayden spesifik eleman silme fonksiyonu
-function removeItemAll(arr, value) {
-  let i = 0;
-  while (i < arr.length) {
-    if (arr[i] === value) {
-      arr.splice(i, 1);
-    } else {
-      ++i;
-    }
-  }
-  return arr;
-}
