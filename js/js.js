@@ -1,3 +1,11 @@
+// localStorage
+let myDutylist = [];
+let Dutylist = [...document.getElementsByTagName("LI")];
+for(let i = 0; i<Dutylist.length; i++) {
+  myDutylist.push(Dutylist[i].innerText)
+  localStorage.setItem('myDuty', JSON.stringify(myDutylist));
+}
+
 // listeye yeni eleman ekleme
 function newElement(){
     let ekleme = document.querySelector("#task")
@@ -8,6 +16,7 @@ function newElement(){
         let liste = document.querySelector("ul#list")
         let lis = [...liste.getElementsByTagName('LI')] 
         for(let i = 0; i<lis.length; i++){
+            // listeye aynı iş iki kere eklenmesin
             if (lis[i].innerText===`${ekleme.value}\n×`){
                 $("#liveToast3").toast('show')
                 break
@@ -17,9 +26,14 @@ function newElement(){
                 let liDOM = document.createElement("LI")
                 liDOM.innerHTML=ekleme.value
                 liste.append(liDOM)
+                
+                // localStorage
+                myDutylist.push(ekleme.value)
+                console.log(myDutylist)
+                localStorage.setItem('myDuty', JSON.stringify(myDutylist));
 
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("\u00D7");
+                let span = document.createElement("SPAN");
+                let txt = document.createTextNode("\u00D7");
                 span.className = "close";
                 span.appendChild(txt);
                 liDOM.appendChild(span)
@@ -46,7 +60,7 @@ function newElement(){
     }   
 }
 
-// listedeki eleman yapıldı yapılmadı kontrolu
+// listedeki iş yapıldı yapılmadı kontrolu
 let list = document.querySelector("ul#list");
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
@@ -72,7 +86,26 @@ for (let i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     let div = this.parentElement;
     div.style.display = "none";
+
+    // localStorage
+    let str = close[i].parentElement.innerText;
+    let stri = str.replace(`×`,"");
+    removeItemAll(myDutylist,stri)
+    console.log(myDutylist)
+    localStorage.setItem('myDuty', JSON.stringify(myDutylist));
+
   }
 }
 
-
+// arrayden spesifik eleman silme fonksiyonu
+function removeItemAll(arr, value) {
+  let i = 0;
+  while (i < arr.length) {
+    if (arr[i] === value) {
+      arr.splice(i, 1);
+    } else {
+      ++i;
+    }
+  }
+  return arr;
+}
