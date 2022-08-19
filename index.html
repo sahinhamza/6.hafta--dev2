@@ -11,7 +11,7 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <title>Yapılacaklar Listesi</title>
+    <title>To-do List</title>
   </head>
   <body>
     <div class="mr-1" style="position: relative">
@@ -34,7 +34,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div  class="toast-body">Listeye eklendi.</div>
+          <div  class="toast-body">Added to the list.</div>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div  class="toast-body">Listeye boş ekleme yapamazsınız!</div>
+          <div  class="toast-body">You cannot add the blank to the list!</div>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div  class="toast-body">Bu iş listede var!</div>
+          <div  class="toast-body">This has already been added!</div>
         </div>
       </div>
     </div>
@@ -93,19 +93,19 @@
           class="mb-1"
           alt=""
         />
-        <h2>Yapılacaklar Listesi</h2>
-        <input type="text" id="task" placeholder="Bugün ne yapacaksın?"/>
+        <h2>To-Do List</h2>
+        <input type="text" id="task" placeholder="What are you gonna do today?"/>
         <span onclick="newElement()" id="liveToastBtn" class="button"
-          >Ekle</span
+          >Add</span
         >
       </div>
 
       <ul id="list">
-        <li>3 Litre Su İç</li>
-        <li>Ödevleri Yap</li>
-        <li>En Az 3 Saat Kodlama Yap</li>
-        <li>Yemek Yap</li>
-        <li>50 Sayfa Kitap Oku</li>
+        <li>Drink 3 Liters of Water</li>
+        <li>Do the Homework</li>
+        <li>Code For At Least 3 Hours</li>
+        <li>Cook</li>
+        <li>Read 50 Pages of Book</li>
       </ul>
       <script
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

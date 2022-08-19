@@ -1,4 +1,5 @@
-*Frontend Bootcamp Hazırlık Programı 6.Hafta
+*Kodluyoruz Frontend Wep Development Bootcamp
 
-*Ödev 2
+*Homework
 
+*To-Do List

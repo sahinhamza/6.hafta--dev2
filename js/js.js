@@ -1,75 +1,73 @@
 // localStorage
 let myDutylist = [];
 let Dutylist = [...document.getElementsByTagName("LI")];
-for(let i = 0; i<Dutylist.length; i++) {
+
+for (let i = 0; i < Dutylist.length; i++) {
   myDutylist.push(Dutylist[i].innerText)
   localStorage.setItem('myDuty', JSON.stringify(myDutylist));
 }
 
-// listeye yeni eleman ekleme
-function newElement(){
-    let ekleme = document.querySelector("#task")
-    if (ekleme.value==false){
-        $("#liveToast2").toast('show')
-    }
-    else{
-        let liste = document.querySelector("ul#list")
-        let lis = [...liste.getElementsByTagName('LI')] 
-        for(let i = 0; i<lis.length; i++){
-            // listeye aynı iş iki kere eklenmesin
-            if (lis[i].innerText===`${ekleme.value}\n×`){
-                $("#liveToast3").toast('show')
-                break
+// add new todo
+function newElement() {
+  let add = document.querySelector("#task")
+  if (add.value == false) {
+    $("#liveToast2").toast('show')
+  }
+  else {
+    let list = document.querySelector("ul#list")
+    let list_ = [...list.getElementsByTagName('LI')]
+    for (let i = 0; i < list_.length; i++) {
+      // Do not add the same todo to the list twice
+      if (list_[i].innerText === `${add.value}\n×`) {
+        $("#liveToast3").toast('show')
+        break
+      }
+      else {
+        if (i == list_.length - 1) {
+          let liDOM = document.createElement("LI")
+          liDOM.innerHTML = add.value
+          list.append(liDOM)
+
+          // localStorage
+          myDutylist.push(add.value)
+          console.log(myDutylist)
+          localStorage.setItem('myDuty', JSON.stringify(myDutylist));
+
+          let span = document.createElement("SPAN");
+          let txt = document.createTextNode("\u00D7");
+          span.className = "close";
+          span.appendChild(txt);
+          liDOM.appendChild(span)
+
+          let close = document.getElementsByClassName("close");
+          for (let i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+              let div = this.parentElement;
+              div.style.display = "none";
             }
-            else{
-                if (i == lis.length-1){
-                let liDOM = document.createElement("LI")
-                liDOM.innerHTML=ekleme.value
-                liste.append(liDOM)
-                
-                // localStorage
-                myDutylist.push(ekleme.value)
-                console.log(myDutylist)
-                localStorage.setItem('myDuty', JSON.stringify(myDutylist));
+          }
 
-                let span = document.createElement("SPAN");
-                let txt = document.createTextNode("\u00D7");
-                span.className = "close";
-                span.appendChild(txt);
-                liDOM.appendChild(span)
-
-                let close = document.getElementsByClassName("close");
-                for (let i = 0; i < close.length; i++) {
-                    close[i].onclick = function() {
-                    let div = this.parentElement;
-                    div.style.display = "none";
-                    }
-                }
-
-
-
-
-                $("#liveToast1").toast('show')
-                break
-                }
-                else{
-                    continue
-                }
-            }
+          $("#liveToast1").toast('show')
+          break
         }
-    }   
+        else {
+          continue
+        }
+      }
+    }
+  }
 }
 
-// listedeki iş yapıldı yapılmadı kontrolu
+// check for the to-do if it done or not
 let list = document.querySelector("ul#list");
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+list.addEventListener('click', function (e) {
+  if (e.target.tagName === 'LI') {
+    e.target.classList.toggle('checked');
   }
 }, false);
 
 
-// listeden iş silme çarpısı
+// clear todo cross
 let mylist = document.getElementsByTagName("LI");
 for (let i = 0; i < mylist.length; i++) {
   let span = document.createElement("SPAN");
@@ -80,10 +78,10 @@ for (let i = 0; i < mylist.length; i++) {
 }
 
 
-// listeden iş silme
+// clear todo
 let close = document.getElementsByClassName("close");
 for (let i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
+  close[i].onclick = function () {
     let div = this.parentElement;
     div.style.display = "none";
 
