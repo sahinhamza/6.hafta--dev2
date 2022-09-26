@@ -1,9 +1,16 @@
-* Kodluyoruz Frontend Wep Development Bootcamp
+## Table of contents
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Live](#live)
 
-* Homework
-
-* To-Do List
+## General info
+This is a to-do list app.
+	
+## Technologies
+Project is created with:
+* JavaScript
+* CSS
+* HTML5
 
 ## Live
-
 [Click Here](https://hamzasahin-todos.netlify.app/)
